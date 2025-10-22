@@ -10,7 +10,9 @@
 
 Our lab hit a wall: transgenic (Tg) Parkinson's disease (PD) mice were dying during brain surgeries. All of them.
 
-Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity - and it's very poorly documented in the literature.**
+We perform stereotaxic surgeries to deliver gene therapy vectors (AAV) directly into the substantia nigra, a brain region critical for dopamine production and heavily affected in PD. The goal: test whether restoring specific proteins can slow or reverse disease progression.
+
+Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity and it's very poorly documented in the literature.**
 
 This was a serious problem because:
 - Tg animals take 22 weeks to breed and raise until surgery timepoint
