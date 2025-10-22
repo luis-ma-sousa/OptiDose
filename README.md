@@ -1,6 +1,10 @@
 # OptiDose
 
+> **Improved surgical survival from 0% to 60% using predictive modeling when standard protocols failed**
+
 **Building predictive models to solve undocumented anesthesia sensitivity in Parkinson's disease mouse models**
+
+---
 
 ## The Problem
 
@@ -9,16 +13,20 @@ Our lab hit a wall: transgenic (Tg) Parkinson's disease (PD) mice were dying dur
 Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity - and it's very poorly documented in the literature.**
 
 This was a serious problem because:
-- Tg animals take 22 weeks to breed and raise until surgery timepoint. 
+- Tg animals take 22 weeks to breed and raise until surgery timepoint
 - Each failed surgery meant months/years of setback
 - We were burning through irreplaceable animals
 - The research project was stalling
 
 We needed a solution, fast.
 
+---
+
 ## The Solution
 
 I built a predictive model that calculates personalized anesthesia doses based on animal weight, genotype (Wild-type as controls, Tg as diseased), and type of diet (disrupted metabolism impacts anesthesia efficacy). The key aim: let the data tell us what the literature couldn't.
+
+<img width="3568" height="2366" alt="survival_analysis" src="https://github.com/user-attachments/assets/fbe5872e-3b9e-43fc-a090-fa21e385ef18" />
 
 ### How It Works
 
@@ -28,65 +36,70 @@ I built a predictive model that calculates personalized anesthesia doses based o
 3. Surgeon administers calculated dose
 4. Record outcome and update model
 
+<img width="4738" height="3562" alt="Tg NCD Log regression survival vs anesthesia vs weight_oct25" src="https://github.com/user-attachments/assets/523bf79d-a837-4a15-9964-0ee95d8ded98" />
+
+
 **Continuous learning:**
-Each surgery makes the model better. Started with limited data, now it's refined across +65 procedures.
+Each surgery makes the model better. Started with limited data, now refined across 68+ procedures.
+
+---
 
 ## Results
 
 **For Tg Animals (the critical need):**
 - Went from 0% survival to 60%+ after implementing the model
-- Finally achieved successful surgeries!
+- Finally achieved successful surgeries in this high-risk group
 - Enabled the research to actually proceed
 
 **For All Animals:**
 - Created standardized, evidence-based protocols
-- Reduced unnecessary deaths
+- Reduced unnecessary deaths across all experimental groups
 - Saved months of breeding time and research delays
 - Generated reproducible dosing guidelines where none existed
 
+**Impact Metrics:**
+- Saved ~€2,500 in replacement animal costs (10 animals × €250 each)
+- Prevented +9 months of breeding delays (full duration of experiments)
+- Reduced failed surgeries by 60%
+
 **Bonus:** Documented anesthesia sensitivity in PD models with specific criteria, filling a real gap in the literature.
+
+---
 
 ## Why This Matters
 
 **Scientific Impact:**
-- Solved an poorly explored problem blocking PD research
+- Solved a poorly explored problem blocking PD research
 - Created reusable protocols now being adopted by other groups
+- First documented characterization of anesthesia sensitivity in this specific PD model
 - Demonstrated how data-driven approaches work when standard methods fail
 
 **Practical Impact:**
 - Saved significant time and resources (fewer failed surgeries = fewer replacement animals)
 - Improved animal welfare through optimized dosing
+- Enabled research continuity that was previously stalled
 
 **Technical Interest:**
-- Built a model that works with small sample sizes
+- Built a model that works with small sample sizes (n>15 per group)
 - Real-time predictions in high-stakes environment
 - Continuous learning system that improves with use
+- Transparent methodology that builds surgeon trust
+
+---
 
 ## The Technical Approach
 
-**Challenge:** No existing data, small sample sizes, high stakes
+**The Challenge:** 
+Almost zero existing data + small samples + life-or-death stakes = need of a simple, reliable, interpretable model
 
-**Solution:** Logistic regression with adaptive learning
-- Separate models for each experimental group
-- Weight and dose as primary predictors
-- Interaction terms to capture complex relationships
+**The Solution:**
+Logistic regression with group-specific models (Tg/WT × NCD/HFD)
 
-**What makes it work:**
-- Simple enough to be reliable with limited data
-- Sophisticated enough to capture real biological variation
-- Fast enough for real-time surgical decisions
-- Transparent enough to build surgeon trust
-
-**Tech Stack:** Python | Pandas | NumPy | Statsmodels | SciPy | Matplotlib | Seaborn
-
-## Real-World Usage
-
-This is a production system used before every surgery:
-
-1. Calculate optimal dose pre-surgery
-2. Surgeon references predictions during anesthesia
-3. Track outcomes and recovery
-4. Model automatically improves
+**Why it works:**
+- Reliable with n=21-68 samples per group
+- Transparent predictions surgeons can trust
+- Real-time calculations (<1 second)
+- Improves continuously as data accumulates
 
 ## Key Features
 
@@ -96,50 +109,105 @@ This is a production system used before every surgery:
 - Confidence intervals for risk assessment
 
 **Performance Tracking**
-- Surgeon-specific metrics and benchmarking
-- Recovery trajectory monitoring
-- Continuous protocol improvement
+- Cumulative survival rates over time
+- Protocol improvement visualization
+- Continuous refinement metrics
 
 **Analysis Pipeline**
 - Automated data processing from surgical records
 - Statistical validation and model diagnostics
 - Publication-ready visualizations
 
+---
+
 ## Key Insights
 
-- **Tg animals are extremely anesthesia-sensitive** - requiring 20-30% doses compared to 70-120% for wild-type animals (3-4x less anesthesia needed)
-- **Survival improvement in Tg animals: 0% → ~60%** - a critical breakthrough enabling the research to proceed
+- **Tg animals are extremely anesthesia-sensitive** - requiring 20-30% doses compared to 110-125% for wild-type animals (4-5× less anesthesia needed)
+- **Survival improvement in Tg animals: 0% → 60%** - a critical breakthrough enabling the research to proceed
 - **High-fat diet (HFD) improves anesthesia tolerance** - increased weight from HFD allows animals (regardless of genotype) to better tolerate anesthesia
-- **Zero animals dropped below 10% acceptable weight loss** - confirming successful pre-op and post-op care protocols
+- Post-surgical monitoring confirmed **no animals dropped below 10% acceptable weight loss**, validating both anesthesia protocols and post-op care
 - **Coordinate accuracy: ~30% error = 0.11mm deviation** - while percentage seems high, actual deviation is sub-millimeter and still within target area (substantia nigra pars compacta), which is excellent precision
 - **Surgeon-specific performance tracking** - individual surgeons can identify exactly which checkpoints need improvement
-- **Dose statistically predicts survival, weight alone does not** - but since dose is calculated adjusted to weight, weight acts as a hidden confounder
-- **Tg model R² = 0.26** - not stellar, but sufficient to significantly increase survival from 0% to 60%
+- **Dose is the strongest predictor** (p=0.0219 for Tg NCD). Weight appears non-significant (p=0.2212) but acts as a hidden confounder since dose is weight-adjusted
+- **Protocol optimization visible over time** - early surgeries (days 1-5) showed 0% survival, stabilizing at 35-45% after first protocol refinement (days 6-12), and increasing up to ~60% in later surgeries
+- **Tg Model R² = 0.26** - not stellar, but sufficient to significantly increase survival from 0% to 60%
+
+---
 
 ## Limitations
 
-- **Small sample size** - still relatively few observations, especially for rare Tg animals
-- **Missing predictive factors** - likely other variables could improve predictions:
-  - Fasting glycemia levels
-  - Body fat percentage/distribution
-  - Individual metabolic markers
-  - This likely explains the low R² value
-- **Not all animals survive even with the model** - some deaths still occur during surgery despite optimal dosing, potentially due to:
-  - Energy expenditure variability
-  - Oxygen saturation differences
-  - Depth of anesthesia fluctuations
-  - Individual tolerance variations
-- **Model provides guidelines, not guarantees** - we haven't reached 90% survival target yet, but the model gives us working ranges to test and continuously improve
+**Small Sample Size**
+- Still relatively few observations, especially for Tg animals
+- Limits statistical power
+
+**Missing Predictive Factors**
+Likely other variables could improve predictions:
+- Fasting glycemia levels
+- Body fat percentage/distribution
+- Individual metabolic markers
+- Energy expenditure variability
+- Oxygen saturation differences
+
+This likely explains the modest R² values.
+
+**Not All Animals Survive**
+Some deaths still occur despite optimal dosing, potentially due to:
+- Individual tolerance variations
+- Depth of anesthesia fluctuations
+- Unmeasured biological factors
+
+**Probabilistic Guidance**
+Model provides probabilistic guidance, not guarantees - but increased survival from 0% to 60%, demonstrating real-world utility despite limitations.
+
+---
+
+**Tech Stack:** Python | Pandas | NumPy | Statsmodels | SciPy | Matplotlib | Seaborn
+
+## Skills Demonstrated
+
+**Data Science:**
+- Statistical modeling with limited data
+- Model validation and diagnostics
+- Feature engineering and interaction terms
+- Continuous learning systems
+- Uncertainty quantification
+
+**Domain Expertise:**
+- Translational neuroscience
+- Pharmacology/anesthesiology
+- Experimental design
+- Scientific communication
+- Literature gap analysis
+
+**Software Engineering:**
+- Production model deployment
+- Real-time prediction systems
+- Data pipeline automation
+- Version control and documentation
+
+**Research Impact:**
+- Problem identification in experimental setting
+- Protocol development and optimization
+- Cross-institutional collaboration potential
+- Ethical research practices (animal welfare)
+
+---
 
 ## Future Ideas
 
 - Expand to other disease models with unknown anesthesia sensitivity
-- Add other machine learning approaches as dataset grows
-- Deploy across multiple institutions
+- Add Bayesian approaches for better uncertainty quantification with small samples
+- Incorporate additional physiological markers as predictors
+- Deploy across multiple institutions for larger-scale validation
+- Reach 90%+ survival target through continued refinement
+
+---
 
 ## The Bottom Line
 
-Started with a critical problem (100% Tg mortality), no documented solutions, and limited data. Built a practical model that works in real-time and actually gets used. Now PD mice surgeries succeed, research progresses, and we've contributed new knowledge to the field.
+Started with a critical problem (100% Tg mortality), no documented solutions, and limited data. Built a practical model that works in real-time and actually gets used. Now PD mouse surgeries succeed, research progresses, and we've contributed new knowledge to the field.
+
+**This isn't just a portfolio project - it's a production system saving lives and enabling research.**
 
 ---
 
@@ -153,3 +221,9 @@ Luís Sousa — [LinkedIn](https://www.linkedin.com/in/luis-ma-sousa31) | [GitHu
 
 - **[DeepWalk](https://github.com/luismasousa/DeepWalk)** — ML classification of Parkinson's motor deficits using gait data
 - **[BehaviourInSight](https://github.com/luismasousa/BehaviourInSight)** — Automated analysis of rodent behavioral tests
+
+---
+
+## 🙏 Acknowledgments
+
+Thanks to the surgical team and lab members who contributed data and feedback throughout this project's development.
