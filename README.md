@@ -12,6 +12,11 @@ Our lab hit a wall: transgenic (Tg) Parkinson's disease (PD) mice were dying dur
 
 We perform stereotaxic surgeries to deliver gene therapy vectors (AAV) directly into the substantia nigra, a brain region critical for dopamine production and heavily affected in PD. The goal: test whether restoring specific proteins can slow or reverse disease progression.
 
+
+<img width="1134" height="716" alt="Screenshot 2025-10-22 at 15 45 02" src="https://github.com/user-attachments/assets/8a019116-7175-4bec-8d0c-7439b7184691" />
+*Precise 3D targeting for gene therapy delivery to the substantia nigra (shown in red). Requires optimal anesthesia for sub-millimeter accuracy.*
+
+
 Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity and it's very poorly documented in the literature.**
 
 This was a serious problem because:
