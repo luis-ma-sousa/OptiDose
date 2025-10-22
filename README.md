@@ -14,8 +14,8 @@ We perform stereotaxic surgeries to deliver gene therapy vectors (AAV) directly 
 
 
 <img width="1134" height="716" alt="Screenshot 2025-10-22 at 15 45 02" src="https://github.com/user-attachments/assets/8a019116-7175-4bec-8d0c-7439b7184691" />
-Precise 3D targeting for gene therapy delivery to the substantia nigra (shown in red). Requires optimal anesthesia for sub-millimeter accuracy. Created with Biorender.
 
+*Precise 3D targeting for gene therapy delivery to the substantia nigra (shown in red). Requires optimal anesthesia for sub-millimeter accuracy. Created with BioRender.*
 
 Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity and it's very poorly documented in the literature.**
 
@@ -44,7 +44,6 @@ I built a predictive model that calculates personalized anesthesia doses based o
 4. Record outcome and update model
 
 <img width="4738" height="3562" alt="Tg NCD Log regression survival vs anesthesia vs weight_oct25" src="https://github.com/user-attachments/assets/523bf79d-a837-4a15-9964-0ee95d8ded98" />
-
 
 **Continuous learning:**
 Each surgery makes the model better. Started with limited data, now refined across 68+ procedures.
@@ -103,7 +102,7 @@ Almost zero existing data + small samples + life-or-death stakes = need of a sim
 Logistic regression with group-specific models (Tg/WT × NCD/HFD)
 
 **Why it works:**
-- Reliable with n=21-68 samples per group
+- Reasonably reliable with n>15 samples per group
 - Transparent predictions surgeons can trust
 - Real-time calculations (<1 second)
 - Improves continuously as data accumulates
@@ -148,6 +147,7 @@ Logistic regression with group-specific models (Tg/WT × NCD/HFD)
 - Limits statistical power
 
 **Missing Predictive Factors**
+
 Likely other variables could improve predictions:
 - Fasting glycemia levels
 - Body fat percentage/distribution
@@ -158,12 +158,14 @@ Likely other variables could improve predictions:
 This likely explains the modest R² values.
 
 **Not All Animals Survive**
+
 Some deaths still occur despite optimal dosing, potentially due to:
 - Individual tolerance variations
 - Depth of anesthesia fluctuations
 - Unmeasured biological factors
 
 **Probabilistic Guidance**
+
 Model provides probabilistic guidance, not guarantees - but increased survival from 0% to 60%, demonstrating real-world utility despite limitations.
 
 ---
