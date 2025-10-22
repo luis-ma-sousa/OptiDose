@@ -46,7 +46,7 @@ Each surgery makes the model better. Started with limited data, now it's refined
 
 **Bonus:** Documented anesthesia sensitivity in PD models with specific criteria, filling a real gap in the literature.
 
-## Why This Matters?
+## Why This Matters
 
 **Scientific Impact:**
 - Solved an poorly explored problem blocking PD research
@@ -105,9 +105,31 @@ This is a production system used before every surgery:
 - Statistical validation and model diagnostics
 - Publication-ready visualizations
 
-## Key insights
+## Key Insights
 
-- 
+- **Tg animals are extremely anesthesia-sensitive** - requiring 20-30% doses compared to 70-120% for wild-type animals (3-4x less anesthesia needed)
+- **Survival improvement in Tg animals: 0% → ~60%** - a critical breakthrough enabling the research to proceed
+- **High-fat diet (HFD) improves anesthesia tolerance** - increased weight from HFD allows animals (regardless of genotype) to better tolerate anesthesia
+- **Zero animals dropped below 10% acceptable weight loss** - confirming successful pre-op and post-op care protocols
+- **Coordinate accuracy: ~30% error = 0.11mm deviation** - while percentage seems high, actual deviation is sub-millimeter and still within target area (substantia nigra pars compacta), which is excellent precision
+- **Surgeon-specific performance tracking** - individual surgeons can identify exactly which checkpoints need improvement
+- **Dose statistically predicts survival, weight alone does not** - but since dose is calculated adjusted to weight, weight acts as a hidden confounder
+- **Tg model R² = 0.26** - not stellar, but sufficient to significantly increase survival from 0% to 60%
+
+## Limitations
+
+- **Small sample size** - still relatively few observations, especially for rare Tg animals
+- **Missing predictive factors** - likely other variables could improve predictions:
+  - Fasting glycemia levels
+  - Body fat percentage/distribution
+  - Individual metabolic markers
+  - This likely explains the low R² value
+- **Not all animals survive even with the model** - some deaths still occur during surgery despite optimal dosing, potentially due to:
+  - Energy expenditure variability
+  - Oxygen saturation differences
+  - Depth of anesthesia fluctuations
+  - Individual tolerance variations
+- **Model provides guidelines, not guarantees** - we haven't reached 90% survival target yet, but the model gives us working ranges to test and continuously improve
 
 ## Future Ideas
 
