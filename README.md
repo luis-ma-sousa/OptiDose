@@ -170,6 +170,15 @@ Model provides probabilistic guidance, not guarantees - but increased survival f
 
 ---
 
+## 📁 Repository Contents
+```
+OptiDose/
+├── OptiDose.ipynb          # Complete analysis pipeline
+├── Surgery summary.xlsx    # Anonymized surgical records (n=68)
+└── README.md
+```
+  
+---
 ## Skills Demonstrated
 
 **Tech Stack:** Python | Pandas | NumPy | Statsmodels | SciPy | Matplotlib | Seaborn
