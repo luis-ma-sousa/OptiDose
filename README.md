@@ -170,9 +170,9 @@ Model provides probabilistic guidance, not guarantees - but increased survival f
 
 ---
 
-**Tech Stack:** Python | Pandas | NumPy | Statsmodels | SciPy | Matplotlib | Seaborn
-
 ## Skills Demonstrated
+
+**Tech Stack:** Python | Pandas | NumPy | Statsmodels | SciPy | Matplotlib | Seaborn
 
 **Data Science:**
 - Statistical modeling with limited data
