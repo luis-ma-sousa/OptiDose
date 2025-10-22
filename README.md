@@ -14,7 +14,7 @@ We perform stereotaxic surgeries to deliver gene therapy vectors (AAV) directly 
 
 
 <img width="1134" height="716" alt="Screenshot 2025-10-22 at 15 45 02" src="https://github.com/user-attachments/assets/8a019116-7175-4bec-8d0c-7439b7184691" />
-*Precise 3D targeting for gene therapy delivery to the substantia nigra (shown in red). Requires optimal anesthesia for sub-millimeter accuracy.*
+Precise 3D targeting for gene therapy delivery to the substantia nigra (shown in red). Requires optimal anesthesia for sub-millimeter accuracy. Created with Biorender.
 
 
 Standard anesthesia protocols (ketamine + medetomidine) work fine for healthy control mice, but **PD animal models have significantly higher anesthesia sensitivity and it's very poorly documented in the literature.**
